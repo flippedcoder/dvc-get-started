@@ -8,7 +8,7 @@ jobs:
 
       - uses: iterative/setup-cml@v1
 
-      - name: deploy
+      - name: execute
         shell: bash
         env:
           repo_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
