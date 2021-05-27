@@ -32,7 +32,7 @@ clf = RandomForestClassifier(
     n_estimators=n_est,
     min_samples_split=min_split,
     n_jobs=2,
-    max_depth=27,
+    max_depth=3,
     random_state=seed
 )
 
