@@ -30,19 +30,19 @@ stages:
       size: 2455
     params:
       params.yaml:
-        featurize.max_features: 3000
-        featurize.ngrams: 2
+        featurize.max_features: 1500
+        featurize.ngrams: 1
     outs:
     - path: data/features
-      md5: 52c1fddf9b7b11dff75bffbeff7958d3.dir
-      size: 12730163
+      md5: 8ef4ceb1fdc08321d055269416c207e3.dir
+      size: 9549407
       nfiles: 2
   train:
     cmd: python src/train.py data/features model.pkl
     deps:
     - path: data/features
-      md5: 52c1fddf9b7b11dff75bffbeff7958d3.dir
-      size: 12730163
+      md5: 8ef4ceb1fdc08321d055269416c207e3.dir
+      size: 9549407
       nfiles: 2
     - path: src/train.py
       md5: 3ffc5530112ca028ac61a3c8efeb0516
@@ -50,32 +50,32 @@ stages:
     params:
       params.yaml:
         train.min_split: 24
-        train.n_est: 80
+        train.n_est: 100
         train.seed: 20170428
     outs:
     - path: model.pkl
-      md5: 332ef0349acfa042486c0699720f497d
-      size: 2447182
+      md5: cc1749b07138000a6db305e706759b73
+      size: 3066839
   evaluate:
     cmd: python src/evaluate.py model.pkl data/features scores.json prc.json roc.json
     deps:
     - path: data/features
-      md5: 52c1fddf9b7b11dff75bffbeff7958d3.dir
-      size: 12730163
+      md5: 8ef4ceb1fdc08321d055269416c207e3.dir
+      size: 9549407
       nfiles: 2
     - path: model.pkl
-      md5: 332ef0349acfa042486c0699720f497d
-      size: 2447182
+      md5: cc1749b07138000a6db305e706759b73
+      size: 3066839
     - path: src/evaluate.py
       md5: 16a56ad9df4476e6d3b76a64fe46dbcc
       size: 1483
     outs:
     - path: prc.json
-      md5: 75f089b3ab360952e2943a0da0eaa9bc
-      size: 429995
+      md5: 3cf92903a4ef39ef81797c82216432f4
+      size: 428959
     - path: roc.json
-      md5: a75109dd9a7df021b1399231f5c40f35
-      size: 84475
+      md5: 3bc54c631fb9df7bb1df872e34fa2ca7
+      size: 74143
     - path: scores.json
-      md5: 1a22dfb87141dca0afc5a0d9b7a57f17
+      md5: 213d530cd6ea98c2fdd74028b6223d1f
       size: 73
