@@ -30,19 +30,19 @@ stages:
       size: 2455
     params:
       params.yaml:
-        featurize.max_features: 3000
+        featurize.max_features: 300
         featurize.ngrams: 2
     outs:
     - path: data/features
-      md5: 52c1fddf9b7b11dff75bffbeff7958d3.dir
-      size: 12730163
+      md5: 14dd2541428505cb6e47526d87a13406.dir
+      size: 6646751
       nfiles: 2
   train:
     cmd: python src/train.py data/features model.pkl
     deps:
     - path: data/features
-      md5: 52c1fddf9b7b11dff75bffbeff7958d3.dir
-      size: 12730163
+      md5: 14dd2541428505cb6e47526d87a13406.dir
+      size: 6646751
       nfiles: 2
     - path: src/train.py
       md5: 3ffc5530112ca028ac61a3c8efeb0516
@@ -50,32 +50,32 @@ stages:
     params:
       params.yaml:
         train.min_split: 24
-        train.n_est: 80
+        train.n_est: 100
         train.seed: 20170428
     outs:
     - path: model.pkl
-      md5: 332ef0349acfa042486c0699720f497d
-      size: 2447182
+      md5: 79e950b437ef92c3fa67527d1e3c181a
+      size: 2847617
   evaluate:
     cmd: python src/evaluate.py model.pkl data/features scores.json prc.json roc.json
     deps:
     - path: data/features
-      md5: 52c1fddf9b7b11dff75bffbeff7958d3.dir
-      size: 12730163
+      md5: 14dd2541428505cb6e47526d87a13406.dir
+      size: 6646751
       nfiles: 2
     - path: model.pkl
-      md5: 332ef0349acfa042486c0699720f497d
-      size: 2447182
+      md5: 79e950b437ef92c3fa67527d1e3c181a
+      size: 2847617
     - path: src/evaluate.py
       md5: 16a56ad9df4476e6d3b76a64fe46dbcc
       size: 1483
     outs:
     - path: prc.json
-      md5: 75f089b3ab360952e2943a0da0eaa9bc
-      size: 429995
+      md5: 1e7f69d217c3c819a3e671f5599185f9
+      size: 515797
     - path: roc.json
-      md5: a75109dd9a7df021b1399231f5c40f35
-      size: 84475
+      md5: ba582196b66f66e3526f9ce277bb4a18
+      size: 69665
     - path: scores.json
-      md5: 1a22dfb87141dca0afc5a0d9b7a57f17
-      size: 73
+      md5: 30d9ad6af2a3e270ea2cefa9af898614
+      size: 74
